@@ -41,7 +41,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const OnBoarding(),
-      routes: routes,
+      // routes: routes,
+      getPages: routes,
     );
   }
 }

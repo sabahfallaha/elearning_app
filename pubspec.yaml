@@ -49,6 +49,12 @@ dev_dependencies:
   show_up_animation: ^2.0.0
   auto_animated: ^3.0.1
   shared_preferences: ^2.0.15
+  flutter_otp_text_field: ^1.0.1
+  dartz: ^0.10.1
+  http: ^0.13.4
+
+
+
 
 
 

@@ -1,4 +1,5 @@
 import 'package:elearning_app/core/constant/routes.dart';
+import 'package:elearning_app/core/services/services.dart';
 import 'package:elearning_app/data/datasourse/static/static.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -13,15 +14,18 @@ class OnBoardingControllerImp extends OnBoardingController {
 
   int currentPage = 0;
 
+  MyServices myServices = Get.find();
+
   @override
   next() {
     currentPage++;
 
     if (currentPage > onBoardingList.length - 1) {
+      myServices.sharedPreferences.setString("onboarding", "1");
       Get.offAllNamed(AppRoute.login);
     } else {
       pageController.animateToPage(currentPage,
-          duration: const Duration(milliseconds: 700), curve: Curves.easeInOut);
+          duration: const Duration(milliseconds: 900), curve: Curves.easeInOut);
     }
   }
 
