@@ -1,3 +1,4 @@
+import 'package:elearning_app/binding/initialbindings.dart';
 import 'package:elearning_app/core/constant/color.dart';
 import 'package:elearning_app/core/services/services.dart';
 import 'package:elearning_app/routes.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
                 TextStyle(height: 2, color: AppColor.grey, fontSize: 14)),
         primarySwatch: Colors.blue,
       ),
-      home: const OnBoarding(),
+      initialBinding: InitialBindings(),
       // routes: routes,
       getPages: routes,
     );
