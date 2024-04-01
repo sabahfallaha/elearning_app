@@ -2,14 +2,19 @@ import 'package:elearning_app/binding/initialbindings.dart';
 import 'package:elearning_app/core/constant/color.dart';
 import 'package:elearning_app/core/services/services.dart';
 import 'package:elearning_app/routes.dart';
-import 'package:elearning_app/view/screen/onboarding.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialServices();
   runApp(const MyApp());
+  screenSecure();
+}
+
+screenSecure() async {
+  await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
 }
 
 class MyApp extends StatelessWidget {

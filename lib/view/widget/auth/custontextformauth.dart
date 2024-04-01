@@ -27,9 +27,10 @@ class CustomTextFormAuth extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       child: TextFormField(
-        keyboardType: isNumber
-            ? const TextInputType.numberWithOptions(decimal: true)
-            : TextInputType.text,
+        keyboardType: TextInputType.text,
+        // keyboardType: isNumber
+        //     ? const TextInputType.numberWithOptions(decimal: true)
+        //     : TextInputType.text,
         validator: valid,
         controller: mycontroller,
         obscureText: obscureText == null || obscureText == false ? false : true,

@@ -16,7 +16,7 @@ class SuccessSignUp extends StatelessWidget {
         centerTitle: true,
         backgroundColor: AppColor.backgroundcolor,
         elevation: 0.0,
-        title: Text('32'.tr,
+        title: Text('Success',
             style: Theme.of(context)
                 .textTheme
                 .headline1!
@@ -31,19 +31,19 @@ class SuccessSignUp extends StatelessWidget {
             size: 200,
             color: AppColor.primaryColor,
           )),
-          Text("37".tr,
+          Text("Congratulations",
               style: Theme.of(context)
                   .textTheme
                   .headline1!
                   .copyWith(fontSize: 30)),
-          Text("38".tr),
+          Text("Successfully registered"),
           const Spacer(),
           SizedBox(
             width: double.infinity,
             child: CustomButtomAuth(
-                text: "31".tr,
+                text: "Go To Home page",
                 onPressed: () {
-                  controller.goToPageLogin();
+                  controller.goToHomePage();
                 }),
           ),
           const SizedBox(height: 30)

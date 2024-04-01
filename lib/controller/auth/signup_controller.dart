@@ -1,6 +1,7 @@
 import 'package:elearning_app/core/class/statusrequest.dart';
 import 'package:elearning_app/core/constant/routes.dart';
 import 'package:elearning_app/core/function/handlingdatacontroller.dart';
+import 'package:elearning_app/core/services/services.dart';
 import 'package:elearning_app/data/datasourse/remote/auth/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,8 @@ class SignUpControllerImp extends SignUpController {
   late TextEditingController phone;
   late TextEditingController password;
 
-  late StatusRequest statusRequest;
+  StatusRequest statusRequest = StatusRequest.none;
+  MyServices myServices = Get.find();
 
   SignupData signupData = SignupData(Get.find());
 
@@ -28,18 +30,27 @@ class SignUpControllerImp extends SignUpController {
   signUp() async {
     if (formstate.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
+      update();
       var response = await signupData.postdata(
           username.text, password.text, email.text, phone.text);
       print("=============================== Controller $response ");
       statusRequest = handlingData(response);
       if (StatusRequest.success == statusRequest) {
-        if (response['status'] == "success") {
+        // if (response['status'] == "success") {
+        if (response.containsKey('access') && response['access'] != "") {
           // data.addAll(response['data']);
-          Get.offNamed(AppRoute.successSignUp);
+          myServices.sharedPreferences.setString("id", response['id']);
+          myServices.sharedPreferences.setString("access", response['access']);
+          myServices.sharedPreferences
+              .setString("full_name", response['full_name']);
+          myServices.sharedPreferences.setString("step", '2');
+          print("access: " + "${response['access']}");
+
+          Get.offNamed(AppRoute.successSignUp,
+              arguments: {"email": email.text});
         } else {
-          Get.defaultDialog(
-              title: "ُWarning",
-              middleText: "Phone Number Or Email Already Exists");
+          Get.defaultDialog(title: "ُWarning", middleText: "${response}");
+          // middleText: "Phone Number Or Email Already Exists");
           statusRequest = StatusRequest.failure;
         }
       }
